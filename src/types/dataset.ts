@@ -31,8 +31,9 @@ export const DATASETS: Record<Dataset, DatasetConfig> = {
     title: 'WiF Extended Deck Drafter',
     dataUrl: '/data/wif-extended.json',
     draftStorageKey: 'deckDraftState_wif-extended',
-    // TODO: Workshop id of WiF_extended (from its files) once they are in
-    deckCode: {mod: {workshopId: '3388575848', value: 1}, idBits: 17},
+    // WiF_extended is a full mod on its own (WiF + new divisions), Steam
+    // Workshop id from its Config.ini. Largest unit id 100022 fits 17 bits.
+    deckCode: {mod: {workshopId: '3825673031', value: 1}, idBits: 17},
   },
   vanilla: {
     title: 'Vanilla Deck Draft',

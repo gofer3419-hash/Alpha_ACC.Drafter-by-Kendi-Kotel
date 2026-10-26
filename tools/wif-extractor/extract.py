@@ -120,6 +120,17 @@ def load_dic(path):
     return names
 
 
+def load_fallback_names(paths):
+    """{unit descriptor: name} from data JSON files made earlier; first file wins."""
+    names = {}
+    for path in paths:
+        with open(path, encoding="utf-8") as f:
+            for u in json.load(f).get("units", []):
+                if u.get("descriptorName") and u.get("name"):
+                    names.setdefault(u["descriptorName"], u["name"])
+    return names
+
+
 def load_strings(paths):
     """Read localisation CSV files (';' separated).
 
@@ -332,7 +343,7 @@ def build_unit(desc, unit, uid, ctx):
     factory = short(prod.get("FactoryType"))
 
     name_token = ui.get("NameToken")
-    name = ctx["names"].get(name_token)
+    name = ctx["names"].get(name_token) or ctx["fallback_names"].get(desc)
     if not name:
         name = humanize_descriptor(desc)
         ctx["unnamed"].append(desc)
@@ -509,6 +520,10 @@ def main():
                     help="which divisions to export (see PRESETS)")
     ap.add_argument("--division-names", default=None,
                     help="JSON {division descriptor: name}; overrides localised names")
+    ap.add_argument("--fallback-names", nargs="*", default=[],
+                    help="data JSON files made earlier (e.g. data/wif.json data/vanilla.json): "
+                         "unit names for units the given strings do not name "
+                         "(base game units, named in the game dictionaries)")
     ap.add_argument("--division-regex", default=None,
                     help="override the preset: regex on division descriptors")
     args = ap.parse_args()
@@ -616,6 +631,7 @@ def main():
         "unit_divisions": unit_divisions,
         "cost_matrices": cost_matrices,
         "rules": rules,
+        "fallback_names": load_fallback_names(args.fallback_names),
         "unnamed": [],
     }
 

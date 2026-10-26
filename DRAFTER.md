@@ -106,19 +106,30 @@ leżeć w katalogu głównym serwera; `.htaccess` obsługuje podstrony w Apache)
 Dane są w katalogu `data/`:
 
 - `wif.json`: dywizje i jednostki moda A World in Flames,
+- `wif-extended.json`: mod World in Flames Extended (cały WiF plus nowe dywizje;
+  na razie Wagner PMC),
 - `vanilla.json`: dywizje i jednostki gry bazowej,
 - `vanilla-dlc.json`: lista DLC i dywizji, które dodają (dywizje spoza listy
   należą do gry bazowej; źródło: strony DLC w sklepie Steam),
 - `vanilla-division-names.json`: nazwy dywizji vanilla (pliki moderskie gry
   bazowej nie zawierają lokalizacji).
 
-`wif.json` i `vanilla.json` generuje `tools/wif-extractor` z plików gry:
+`wif.json`, `wif-extended.json` i `vanilla.json` generuje `tools/wif-extractor` z plików gry:
 
 ```bash
 # WiF: skompilowany mod z Workshopu (folder Gen, pliki .ndfbin)
 python tools/wif-extractor/extract.py --name wif \
   --ndfbin   ŚCIEŻKA/DO/Gen/NDF/GFX \
   --strings  ŚCIEŻKA/DO/Gen/Localisation/Intermediate/HarvestedStrings.csv \
+  --out data
+
+# WiF Extended (folder Mods/WiF_extended/Gen). Nazwy jednostek gry bazowej
+# nie są w plikach moda, więc biorą się z wcześniej zrobionych wif.json i vanilla.json.
+python tools/wif-extractor/extract.py --name wif-extended \
+  --ndfbin   ŚCIEŻKA/DO/Gen/NDF/GFX \
+  --strings  ŚCIEŻKA/DO/Gen/Localisation/Intermediate/HarvestedStrings.csv \
+             "ŚCIEŻKA/DO/Gen/Localisation/Localisation/A World in Flames/UNITS-US.dic" \
+  --fallback-names data/wif.json data/vanilla.json \
   --out data
 
 # Gra bazowa (rozpakowany WARNO/Mods/ModData/base.zip)
