@@ -3,7 +3,7 @@
 Losowy draft decku dla moda WARNO **A World in Flames**, zbudowany na bazie
 [WarYes](https://github.com/CptToucan/waryes) (sam moduł Deck Drafter).
 
-Strona główna ma cztery przyciski:
+Strona główna ma takie przyciski:
 
 - **Lobby: draft drużynowy**: gra w kilka osób, opis niżej.
 - **Losowanie drużyn**: do 10 graczy, maksymalnie 5 na stronę.
@@ -11,6 +11,10 @@ Strona główna ma cztery przyciski:
   strony (NATO albo PACT).
 - **VANILLA Deck Drafter**: draft na dywizjach gry bazowej; po wyborze strony
   zaznaczasz posiadane DLC i losowane są tylko dywizje z gry bazowej i tych DLC.
+- **Narzędzie testowe** (`/test`): wybierasz zestaw (WiF albo WiF Extended)
+  i dowolną dywizję z listy (NATO / PAKT), a potem draftujesz jej jednostki
+  sam, bez losowania 3 dywizji. Dalej działa jak zwykły drafter; korzysta z
+  tego samego zapisu w przeglądarce co solo drafter danego zestawu.
 
 Na końcu draftu dostajesz kod decku do importu w grze. Logo WarYes na górze
 prowadzi na stronę główną.

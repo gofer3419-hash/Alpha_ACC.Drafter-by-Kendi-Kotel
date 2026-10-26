@@ -58,6 +58,8 @@ export interface DraftOptions {
   side?: DraftSide;
   /** Only offer these division descriptors (e.g. base game + owned DLC) */
   allowedDivisions?: string[];
+  /** Test tool: skip the division pick and draft this division */
+  division?: string;
 }
 
 export class DeckDraftClientEngine implements DeckDraftEngine {
@@ -87,6 +89,18 @@ export class DeckDraftClientEngine implements DeckDraftEngine {
     // create a DIVISON_PICK state, limited by the chosen side and DLC
 
     await this.initializeUnitAndDivisionData();
+    if (options.division) {
+      if (!this.divisions.some((d) => d.descriptor === options.division)) {
+        throw new Error(`Unknown division: ${options.division}`);
+      }
+      // Same path as picking it: a one-choice division pick, chosen at once
+      this.state = {
+        phase: 'DIVISION_PICK',
+        data: {choices: [options.division]},
+      };
+      await this.chooseOption(0);
+      return;
+    }
     const {side, allowedDivisions} = options;
     const allowed = allowedDivisions ? new Set(allowedDivisions) : null;
     const divisions = this.divisions.filter(

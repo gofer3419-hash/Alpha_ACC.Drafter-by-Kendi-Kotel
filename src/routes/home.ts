@@ -91,6 +91,7 @@ export class HomeRoute extends LitElement {
         <a href="/maps">Losowanie mapy</a>
         <a href="/drafter/wif">WiF Deck Drafter</a>
         <a href="/drafter/vanilla">VANILLA Deck Drafter</a>
+        <a href="/test">Narzędzie testowe</a>
         <button
           class="sound"
           aria-pressed=${this.muted}

@@ -256,8 +256,11 @@ export class DeckDraftRoute extends LitElement implements BeforeEnterObserver {
   /** Data set of this draft, from the URL (/drafter/:dataset/:sessionId) */
   protected draftDataset: Dataset = 'wif';
 
+  /** Session id from the URL: "local" (solo draft) or "test" (test tool) */
+  protected sessionId = '';
+
   protected get startPage() {
-    return `/drafter/${this.draftDataset}`;
+    return this.sessionId === 'test' ? '/test' : `/drafter/${this.draftDataset}`;
   }
 
   async onBeforeEnter(location: RouterLocation) {
@@ -267,6 +270,7 @@ export class DeckDraftRoute extends LitElement implements BeforeEnterObserver {
       return;
     }
     this.draftDataset = dataset;
+    this.sessionId = String(location.params.sessionId ?? '');
     // A reload keeps the colour of the chosen side
     applySideTheme(loadDraftSide(dataset));
 

@@ -7,6 +7,8 @@ const routes: Route[] = [
   {path: '/teams', component: 'team-shuffle-route'},
   {path: '/maps', component: 'map-draw-route'},
   {path: '/lobby', component: 'lobby-route'},
+  // Test tool: solo draft of a division picked from a list
+  {path: '/test', component: 'test-tool-route'},
   // :dataset is "wif", "wif-extended" or "vanilla" (see types/dataset.ts)
   {path: '/drafter/:dataset', component: 'deck-drafter-route'},
   {path: '/drafter/:dataset/:sessionId', component: 'deck-draft-route'},

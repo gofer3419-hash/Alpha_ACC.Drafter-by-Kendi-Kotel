@@ -15,6 +15,7 @@ import './routes/map-draw';
 import './routes/deck-drafter';
 import './routes/deck-draft';
 import './routes/lobby';
+import './routes/test-tool';
 
 import './services/router';
 
