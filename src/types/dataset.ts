@@ -1,7 +1,7 @@
 import {DeckCodeOptions} from '../utils/deck-code';
 
 /** Game data sets the site can draft from */
-export type Dataset = 'wif' | 'vanilla';
+export type Dataset = 'wif' | 'wif-extended' | 'vanilla';
 
 export interface DatasetConfig {
   /** Title shown on the drafter pages */
@@ -25,6 +25,15 @@ export const DATASETS: Record<Dataset, DatasetConfig> = {
     // and use 17-bit unit ids (largest WiF unit id: 99999).
     deckCode: {mod: {workshopId: '3388575848', value: 1}, idBits: 17},
   },
+  // WiF together with the divisions of the WiF_extended mod (Wagner, ...).
+  // New divisions of that mod only need data/wif-extended.json regenerated.
+  'wif-extended': {
+    title: 'WiF Extended Deck Drafter',
+    dataUrl: '/data/wif-extended.json',
+    draftStorageKey: 'deckDraftState_wif-extended',
+    // TODO: Workshop id of WiF_extended (from its files) once they are in
+    deckCode: {mod: {workshopId: '3388575848', value: 1}, idBits: 17},
+  },
   vanilla: {
     title: 'Vanilla Deck Draft',
     dataUrl: '/data/vanilla.json',
@@ -35,5 +44,5 @@ export const DATASETS: Record<Dataset, DatasetConfig> = {
 };
 
 export function isDataset(value: unknown): value is Dataset {
-  return value === 'wif' || value === 'vanilla';
+  return value === 'wif' || value === 'wif-extended' || value === 'vanilla';
 }

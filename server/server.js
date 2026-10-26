@@ -39,7 +39,7 @@ const LOG_FILE = path.join(LOG_DIR, 'draft-log.ndjson');
 const HOST_GRACE_MS = Number(arg('host-grace', 30)) * 1000;
 
 const NICK_RE = /^[\p{L}\p{N} _.\-]{2,20}$/u;
-const DATASETS = new Set(['wif', 'vanilla']);
+const DATASETS = new Set(['wif', 'wif-extended', 'vanilla']);
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_PLAYERS = 10;
 const MAX_PER_TEAM = 5;

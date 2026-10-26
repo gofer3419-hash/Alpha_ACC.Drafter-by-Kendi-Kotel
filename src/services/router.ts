@@ -7,7 +7,7 @@ const routes: Route[] = [
   {path: '/teams', component: 'team-shuffle-route'},
   {path: '/maps', component: 'map-draw-route'},
   {path: '/lobby', component: 'lobby-route'},
-  // :dataset is "wif" or "vanilla" (see types/dataset.ts)
+  // :dataset is "wif", "wif-extended" or "vanilla" (see types/dataset.ts)
   {path: '/drafter/:dataset', component: 'deck-drafter-route'},
   {path: '/drafter/:dataset/:sessionId', component: 'deck-draft-route'},
   {path: '(.*)', redirect: '/'},
