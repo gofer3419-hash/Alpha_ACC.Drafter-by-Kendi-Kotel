@@ -9,7 +9,8 @@ import {LookupService, SimpleDeck, SimpleUnitCard} from '@izohek/warno-deck-util
  *   if modded: u64 Steam Workshop id of the mod, u32 (1 in decks made in game)
  *   lv(division id)
  *   lv(number of cards)
- *   5 bits: veterancy field width
+ *   5 bits: veterancy field width (bit length of the highest veterancy in
+ *           the deck: 1 for a deck of "trained" cards, 2 for higher)
  *   5 bits: unit id field width
  *   per card: veterancy, unit id + 1, transport id + 1 (0 = no transport)
  *   lv(0) as terminator, zero padding to a full byte
@@ -38,7 +39,6 @@ const VERSION = 3;
 /** Deck codes store DeckSerializer unit ids + 1, so 0 means "no transport" */
 const UNIT_ID_OFFSET = 1;
 const MIN_ID_BITS = 12;
-const XP_BITS = 2;
 
 function lengthValue(value: number): string {
   const bits = value.toString(2);
@@ -85,6 +85,13 @@ export function encodeDeckCode(
     }
   }
 
+  // Like the game: as many bits as the highest veterancy needs (checked on
+  // a WiF Extended deck with trained cards only: 1 bit).
+  let xpBits = 1;
+  for (const card of deck.cards) {
+    xpBits = Math.max(xpBits, card.veterancy.toString(2).length);
+  }
+
   let bits = lengthValue(VERSION);
   if (options.mod) {
     bits += lengthValue(1);
@@ -95,10 +102,10 @@ export function encodeDeckCode(
   }
   bits += lengthValue(deck.division.id);
   bits += lengthValue(deck.cards.length);
-  bits += fixed(XP_BITS, 5);
+  bits += fixed(xpBits, 5);
   bits += fixed(idBits, 5);
   for (const card of deck.cards) {
-    bits += fixed(card.veterancy, XP_BITS);
+    bits += fixed(card.veterancy, xpBits);
     bits += fixed(card.unit.id + UNIT_ID_OFFSET, idBits);
     bits += fixed(card.transport ? card.transport.id + UNIT_ID_OFFSET : 0, idBits);
   }
