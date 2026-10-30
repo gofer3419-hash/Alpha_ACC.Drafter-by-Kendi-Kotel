@@ -15,6 +15,8 @@ import Luxembourg from '../../images/flags/LUX_FLAG.png';
 import Canada from '../../images/flags/CAN_FLAG.png';
 // @ts-ignore
 import Czechoslovakia from '../../images/flags/TCH_FLAG.png';
+// @ts-ignore
+import Ukraine from '../../images/flags/UKR_FLAG.png';
 import { Country } from '../types/deck-builder';
 
 @customElement('country-flag')
@@ -84,6 +86,9 @@ export class CountryFlag extends LitElement {
         break;
       case Country.TCH:
         image = Czechoslovakia;
+        break;
+      case Country.UKR:
+        image = Ukraine;
         break;
     }
     if (!image) {

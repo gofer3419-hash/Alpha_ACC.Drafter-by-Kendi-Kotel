@@ -26,6 +26,7 @@ enum Country {
   CAN = "CAN",
   ESP = "ESP",
   TCH = "TCH",
+  UKR = "UKR",
 }
 
 interface CostMatrix {
