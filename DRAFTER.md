@@ -111,7 +111,7 @@ Dane są w katalogu `data/`:
 
 - `wif.json`: dywizje i jednostki moda A World in Flames,
 - `wif-extended.json`: mod World in Flames Extended (cały WiF plus nowe dywizje;
-  na razie Wagner PMC),
+  na razie Wagner PMC i 1st Azov Corps),
 - `vanilla.json`: dywizje i jednostki gry bazowej,
 - `vanilla-dlc.json`: lista DLC i dywizji, które dodają (dywizje spoza listy
   należą do gry bazowej; źródło: strony DLC w sklepie Steam),
@@ -129,11 +129,13 @@ python tools/wif-extractor/extract.py --name wif \
 
 # WiF Extended (folder Mods/WiF_extended/Gen). Nazwy jednostek gry bazowej
 # nie są w plikach moda, więc biorą się z wcześniej zrobionych wif.json i vanilla.json.
+# Wzorzec dywizji: WF_ i WFX_ (Azov), bez 16 DZ (jeszcze nie dodana do draftera).
 python tools/wif-extractor/extract.py --name wif-extended \
   --ndfbin   ŚCIEŻKA/DO/Gen/NDF/GFX \
   --strings  ŚCIEŻKA/DO/Gen/Localisation/Intermediate/HarvestedStrings.csv \
              "ŚCIEŻKA/DO/Gen/Localisation/Localisation/A World in Flames/UNITS-US.dic" \
   --fallback-names data/wif.json data/vanilla.json \
+  --division-regex '^Descriptor_Deck_Division_(WF_(?!POL_16DZ)|WFX_)' \
   --out data
 
 # Gra bazowa (rozpakowany WARNO/Mods/ModData/base.zip)

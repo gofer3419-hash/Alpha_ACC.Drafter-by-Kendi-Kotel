@@ -80,8 +80,8 @@ def r2(x, nd=2):
 
 def humanize_descriptor(desc):
     s = re.sub(r"^Descriptor_Unit_", "", desc)
-    s = re.sub(r"^WF_", "", s)
-    s = re.sub(r"_(US|UK|FR|RFA|GER|BEL|SOV|RUS|DDR|POL|TCH|NL|CAN|ESP|LUX|DK)$", "", s)
+    s = re.sub(r"^WFX?_", "", s)
+    s = re.sub(r"_(US|UK|FR|RFA|GER|BEL|SOV|RUS|DDR|POL|TCH|NL|CAN|ESP|LUX|DK|UKR)$", "", s)
     return s.replace("_", " ").strip()
 
 

@@ -1,8 +1,11 @@
 {
-  "divisions": 20,
-  "units": 906,
-  "weapons": 2542,
-  "unitsWithoutLocalisedName": 0,
-  "unnamedUnits": [],
+  "divisions": 21,
+  "units": 980,
+  "weapons": 2736,
+  "unitsWithoutLocalisedName": 2,
+  "unnamedUnits": [
+    "Descriptor_Unit_WFX_Azov_M113A3_UKR",
+    "Descriptor_Unit_WFX_Azov_Ural_4320_trans_UKR"
+  ],
   "problems": []
 }
