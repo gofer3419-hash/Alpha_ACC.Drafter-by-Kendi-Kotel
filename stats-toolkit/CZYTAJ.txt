@@ -1,0 +1,7 @@
+﻿ACC StatsToolKit (WiF Extended)
+
+Otworz index.html (dwuklik). Najlepiej w Chrome albo Edge.
+Instrukcja obslugi: INSTRUKCJA.txt.
+
+Folder musi zostac w calosci (index.html korzysta z plikow obok).
+Praca zapisuje sie w przegladarce.

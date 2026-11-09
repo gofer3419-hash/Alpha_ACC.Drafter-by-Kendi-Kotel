@@ -1,0 +1,52 @@
+﻿ACC StatsToolKit - instrukcja
+
+Start: otworz index.html (dwuklik), najlepiej w Chrome albo Edge.
+Folder musi zostac w calosci (index.html korzysta z plikow obok).
+
+1. WYBOR JEDNOSTKI (ekran startowy)
+- Po lewej lista jednostek WiF Extended, posortowana rodzajem karty.
+- Filtry: nazwa, dywizja (najpierw NATO, potem PAKT), narodowosc, typ jednostki.
+- Kliknij jednostke - po prawej pojawi sie jej karta. "Wybierz" otwiera edycje.
+
+2. EDYCJA
+- Po lewej zostaje oryginalna karta (do porownania), po prawej karta do edycji.
+- Przycisk "Wybierz inna jednostke" wraca do listy.
+
+3. CO MOZNA ZMIENIAC NA KARCIE
+- Nazwa: pole u gory karty.
+- Koszt: pole obok nazwy. Sam sie przelicza przy zmianie statystyk (to szacunek,
+  nie wzor z gry). Mozesz wpisac wlasny koszt, kolejne zmiany dodadza sie do niego.
+  Napis "Koszt jednostki: niski/sredni/wysoki" zmienia sie automatycznie.
+- Pancerz, obrazenia, odleglosc, celnosc, atrybuty broni, koszt zaopatrzenia:
+  przesuwaj suwak myszka albo wpisz liczbe obok.
+- Predkosc, paliwo, PZ i podobne: wpisz sama liczbe.
+- Optyka, kamuflaz, amfibia i inne wybory: kliknij caly kafelek, nad nim otworzy sie
+  okno z lista, kliknij pozycje.
+- Rodzaj jednostki (ikona i napis nad traitami): kliknij ikone.
+- 3 kafelki nad bronia: kliknij kafelek, zaznacz do 3 atrybutow broni.
+- Ikona broni: kliknij ikone, wybierz z listy (mozna szukac) albo wgraj wlasna.
+- Nazwa broni, kaliber, ilosc amunicji: pola pod ikona.
+
+4. NARZEDZIA NAD KARTA
+- TRAITY: lista tylko tych traitow, ktore ma ten rodzaj jednostki (pojazd, piechota...).
+  Zaznacz/odznacz, zeby dodac lub usunac.
+- NOWA KOLUMNA: najpierw rodzaj uzbrojenia, potem konkretna bron z gry z ikona.
+- NOWE UZBROJENIE: pusta kolumna, statystyki wpisujesz recznie.
+- KARTA: ... - zmienia typ karty (pojazd, piechota, smiglowiec, samolot),
+  czyli pola w tabeli na dole.
+- Cofnij (Ctrl+Z), Reset (wraca do oryginalu), Zmiany (podswietla to, co zmieniono).
+- Przy kazdej kolumnie uzbrojenia: strzalki przesuwaja ja w lewo/prawo, ikona
+  kwadratow ja powiela, krzyzyk usuwa.
+
+5. SZEROKOSC KARTY
+- Karta miesci 3 kolumny uzbrojenia. Czwarta i kolejne poszerzaja ja o jedna kolumne.
+
+6. ZRZUT
+- "Zrzut do schowka" kopiuje obraz karty (komunikat "Skopiowano zrzut statystyk do
+  schowka"), potem wklej go Ctrl+V.
+- "Pobierz PNG" zapisuje obraz jako plik.
+- Gdy przegladarka nie pozwala na schowek (strona otwarta z dysku w niektorych
+  przegladarkach), zrzut zostanie pobrany jako plik PNG.
+
+Praca zapisuje sie w przegladarce (ostatnia edytowana karta wroci po ponownym
+otwarciu strony na tym samym komputerze).

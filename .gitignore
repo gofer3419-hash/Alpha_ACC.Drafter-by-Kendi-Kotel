@@ -9,4 +9,3 @@ dist
 build
 .env
 logs/
-dist-stats

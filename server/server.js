@@ -741,6 +741,14 @@ function serveStatic(url, res) {
     res.writeHead(403);
     return res.end();
   }
+  if (fs.existsSync(file) && fs.statSync(file).isDirectory() && fs.existsSync(path.join(file, 'index.html'))) {
+    // A separate page in a folder (e.g. /stats-toolkit/)
+    if (!rel.endsWith('/')) {
+      res.writeHead(301, {Location: `${rel}/`});
+      return res.end();
+    }
+    file = path.join(file, 'index.html');
+  }
   if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) {
     // Client-side routes (/lobby, /drafter/wif ...) are answered by the app
     file = path.join(ROOT, 'index.html');

@@ -92,7 +92,8 @@ export class HomeRoute extends LitElement {
         <a href="/drafter/wif">WiF Deck Drafter</a>
         <a href="/drafter/vanilla">VANILLA Deck Drafter</a>
         <a href="/test">Narzędzie testowe</a>
-        <a href="/stats">StatsToolKit</a>
+        <!-- separate page (stats-toolkit/), not a route of this app -->
+        <a href="/stats-toolkit/index.html" router-ignore>StatsToolKit</a>
         <button
           class="sound"
           aria-pressed=${this.muted}
