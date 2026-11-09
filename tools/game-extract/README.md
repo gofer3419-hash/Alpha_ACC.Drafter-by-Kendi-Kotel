@@ -11,10 +11,4 @@ gry, niczego nie zmieniają.
   Mapę robi się z opisów atlasów (`TextureSmall.atlas` to plik ndfbin:
   obiekty `TTextureSmallContainer` i `TTextureSmall` z pozycją i rozmiarem).
 
-- `wyciagnij_ikony_statystyk.bat` / `.js`: dla StatsToolKit wyciąga atlasy ikon
-  broni (`PC/Atlas/UnitIcons-Armes`) i traitów (`PC/Atlas/Traits`): obrazy `.tgv`
-  i opisy `TextureSmall.atlas`, w najnowszej wersji z łatek, do folderu `wynik`.
-  Domyślnie czyta `E:\Steam\steamapps\common\WARNO\Data\PC`; położony w folderze
-  gry czyta jej `Data\PC`.
-
 Archiwa najnowszej łatki są w formacie EDAT v3, którego skrypty jeszcze nie czytają.
