@@ -14,6 +14,7 @@ import {live} from 'lit/directives/live.js';
 import '../components/stats-toolkit/stats-card';
 import {CardChangeDetail, COUNTRY_NAMES, StatsCard} from '../components/stats-toolkit/stats-card';
 import {
+  assets,
   cardFromUnit,
   collectWeaponPresets,
   emptyWeapon,
@@ -91,7 +92,30 @@ function saveWork(work: SavedWork | null) {
 }
 
 function notify(content: string, theme = '') {
-  notificationService.instance?.addNotification({content, duration: 4000, theme});
+  if (notificationService.instance) {
+    notificationService.instance.addNotification({content, duration: 4000, theme});
+    return;
+  }
+  // No notification manager on the page (standalone version): a plain toast
+  const toast = document.createElement('div');
+  toast.textContent = content;
+  toast.setAttribute('role', 'status');
+  Object.assign(toast.style, {
+    position: 'fixed',
+    left: '50%',
+    bottom: '1.5rem',
+    transform: 'translateX(-50%)',
+    zIndex: '1000',
+    maxWidth: '90vw',
+    padding: '0.7rem 1.2rem',
+    background: theme === 'error' ? '#8e1d2c' : '#2b2a27',
+    color: '#f2efe6',
+    border: '1px solid rgba(255,255,255,0.25)',
+    boxShadow: '0 0.4rem 1rem rgba(0,0,0,0.5)',
+    font: '600 0.95rem sans-serif',
+  });
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
 }
 
 function fileName(card: StatCard, extension: string): string {
@@ -580,8 +604,9 @@ export class StatsToolkitRoute extends LitElement {
       const images = new Map<string, string>();
       for (const unit of units) {
         for (const weapon of unit.weapons) {
-          if (weapon.imageTexture && !images.has(weapon.imageTexture)) {
-            images.set(weapon.imageTexture, `/images/weapons/${weapon.imageTexture}.png`);
+          const url = weapon.imageTexture ? assets.weapon(weapon.imageTexture) : '';
+          if (url && !images.has(weapon.imageTexture)) {
+            images.set(weapon.imageTexture, url);
           }
         }
       }
@@ -865,7 +890,7 @@ export class StatsToolkitRoute extends LitElement {
               class="unit ${this.preview?.descriptorName === unit.descriptorName ? 'selected' : ''}"
               @click=${() => (this.preview = unit)}
             >
-              <img src="/images/units/${unit.descriptorName}.webp" alt="" loading="lazy"
+              <img src=${assets.unit(unit.descriptorName)} alt="" loading="lazy"
                 @error=${(e: Event) => ((e.target as HTMLImageElement).style.visibility = 'hidden')} />
               <span>
                 <div class="u-name">${unit.name}</div>

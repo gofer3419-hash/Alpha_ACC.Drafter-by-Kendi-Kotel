@@ -581,8 +581,17 @@ export function typeLabelOf(weapon: Weapon, category: WeaponCategory, unit?: Uni
   }
 }
 
+/**
+ * Where images come from. The site serves them from /images; the standalone
+ * StatsToolKit (tools/stats-toolkit) replaces these to work from a folder.
+ */
+export const assets = {
+  weapon: (imageTexture: string): string => `/images/weapons/${imageTexture}.png`,
+  unit: (descriptorName: string): string => `/images/units/${descriptorName}.webp`,
+};
+
 export function weaponImageUrl(imageTexture: string): string {
-  return imageTexture ? `/images/weapons/${imageTexture}.png` : '';
+  return imageTexture ? assets.weapon(imageTexture) : '';
 }
 
 /** Penetration at maximum range (kinetic shells lose AP with distance) */

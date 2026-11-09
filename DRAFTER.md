@@ -49,6 +49,11 @@ Narzędzie do tworzenia statystyk innej karty (`/stats`).
    zapis/wczytanie statystyk do pliku `.json`. Bieżąca praca zostaje w
    przeglądarce po odświeżeniu strony.
 
+Osobna wersja (sam StatsToolKit, bez menu draftera, działa po otwarciu
+`index.html` z dysku): `npm install --no-save esbuild`, potem
+`node tools/stats-toolkit/build.mjs` (wynik w `dist-stats/`, dane, ikony broni
+i zdjęcia jednostek są w środku).
+
 Wartości startowe pochodzą z danych draftera i nie zawsze zgadzają się z kartą
 w grze (np. koszt zaopatrzenia i liczba amunicji karabinów są w danych w innej
 postaci). Penetracja pocisków kinetycznych jest liczona na maksymalny zasięg,
