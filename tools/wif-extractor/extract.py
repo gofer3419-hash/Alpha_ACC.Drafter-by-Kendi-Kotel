@@ -195,11 +195,18 @@ def effect_tag_name(tag):
     return t.replace("_", " ").strip() or None
 
 
+# EBaseHitValueModifier in the order of the game enum: compiled .ndfbin files
+# store the map keys as numbers, text .ndf files as names.
+HIT_MODIFIERS = ["Base", "Idling", "Moving", "Targeted"]
+
+
 def hit_modifiers(ammo):
     rule = ammo.get("HitRollRuleDescriptor")
     mods = {}
     if isinstance(rule, ndf.NdfObject):
         for k, v in rule.get("BaseHitValueModifiers") or []:
+            if isinstance(k, int) and not isinstance(k, bool) and 0 <= k < len(HIT_MODIFIERS):
+                k = HIT_MODIFIERS[k]
             mods[short(k)] = v
     return mods
 
