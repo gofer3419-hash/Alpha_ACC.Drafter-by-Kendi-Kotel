@@ -15,12 +15,44 @@ Strona główna ma takie przyciski:
   i dowolną dywizję z listy (NATO / PAKT), a potem draftujesz jej jednostki
   sam, bez losowania 3 dywizji. Dalej działa jak zwykły drafter; korzysta z
   tego samego zapisu w przeglądarce co solo drafter danego zestawu.
+- **StatsToolKit** (`/stats`): statystyki nowej karty na bazie jednostki z
+  WiF Extended. Opis niżej.
 
 Na końcu draftu dostajesz kod decku do importu w grze. Logo WarYes na górze
 prowadzi na stronę główną.
 
 Po wyborze strony cała strona robi się niebieska (NATO) albo czerwona (PAKT),
 a po powrocie do menu wraca bordowa. Kolor wybiera jedna zmienna `--acc-h`.
+
+## StatsToolKit
+
+Narzędzie do tworzenia statystyk innej karty (`/stats`).
+
+1. Po lewej wyszukiwarka wszystkich jednostek WiF Extended: nazwa, dywizja,
+   narodowość, typ jednostki. Po prawej karta wybranej jednostki w stylu gry
+   i przycisk „Wybierz”.
+2. Po „Wybierz” oryginał przechodzi na lewo, a po prawej jest ta sama karta
+   do edycji. Suwaki (pancerz, statystyki broni) można przesuwać myszką albo
+   wpisać liczbę obok; optyka, kamuflaż, amfibia, koszt itp. to listy wartości
+   z gry; prędkość, paliwo itp. to same liczby. Kliknięcie ikony rodzaju
+   jednostki zmienia rodzaj, kliknięcie kafelka nad bronią otwiera atrybuty broni
+   (do 3), kliknięcie obrazka broni zmienia ikonę (lista ikon z gry albo własny
+   obrazek). Kolumny broni można przesuwać, powielać i usuwać.
+3. Narzędzia nad kartą: **Traity** (checkboxy z ikonami), **Nowa kolumna**
+   (rodzaj uzbrojenia, potem broń z gry z ikoną), **Nowe uzbrojenie** (pusta
+   kolumna do wypełnienia), typ karty (pojazd, piechota, śmigłowiec, samolot:
+   pola na dole karty), **Cofnij** (też Ctrl+Z), **Reset**, **Zmiany**
+   (zaznacza wartości inne niż na oryginale).
+4. **Zrzut do schowka** kopiuje obrazek karty (bez pól edycji). Przeglądarki
+   pozwalają na to tylko przez `localhost` albo https; przez adres z Radmina
+   (http) obrazek zostaje pobrany jako plik. Jest też **Pobierz PNG** oraz
+   zapis/wczytanie statystyk do pliku `.json`. Bieżąca praca zostaje w
+   przeglądarce po odświeżeniu strony.
+
+Wartości startowe pochodzą z danych draftera i nie zawsze zgadzają się z kartą
+w grze (np. koszt zaopatrzenia i liczba amunicji karabinów są w danych w innej
+postaci). Penetracja pocisków kinetycznych jest liczona na maksymalny zasięg,
+jak na karcie w grze.
 
 ## Losowanie mapy
 
@@ -158,6 +190,9 @@ trzeba dopisać je do `data/vanilla-dlc.json` i `data/vanilla-division-names.jso
 - `src/routes/deck-drafter.ts`: start draftu (`/drafter/wif`, `/drafter/vanilla`):
   wybór strony, w vanilla także DLC.
 - `src/routes/deck-draft.ts`: ekran draftu (`/drafter/<zestaw>/local`).
+- `src/routes/stats-toolkit.ts`: StatsToolKit; karta w
+  `src/components/stats-toolkit/stats-card.ts`, model i listy wartości w
+  `stats-model.ts`, ikony (inline SVG, potrzebne do zrzutu) w `stats-icons.ts`.
 - `src/types/dataset.ts`: konfiguracja zestawów danych (WiF, vanilla).
 - `src/classes/deck-drafter/DeckDraftClientEngine.ts`: logika draftu.
 - `server/server.js`: serwer: strona, lobby, drużyny, kolejka tur, dziennik.

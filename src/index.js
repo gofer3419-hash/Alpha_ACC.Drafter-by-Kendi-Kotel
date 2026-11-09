@@ -16,6 +16,7 @@ import './routes/deck-drafter';
 import './routes/deck-draft';
 import './routes/lobby';
 import './routes/test-tool';
+import './routes/stats-toolkit';
 
 import './services/router';
 
